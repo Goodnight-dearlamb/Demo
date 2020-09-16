@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>防抖节流</title>
+</head>
+<style type="text/css">
+	* {
+		padding: 0;
+		margin: 0
+	}
+	html,
+	body {
+		height: 100%;
+		width: 100%;
+	}
+	#home {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		background: rgb(68, 68, 68);
+	}
+	span {
+		margin: auto;
+		font-size: 100px;
+		font-weight: bold;
+		font-family: 'dengxian';
+		color: white
+	}
+</style>
+<body>
+<div id="home">
+	<span id="number"></span>
+</div>
+</body>
+<script type="text/javascript">
+	let count = 1;
+	const number = document.getElementById('number');
+	const home = document.getElementById('home');
+
+	// 未处理
+	function changeCount() {
+		number.innerHTML = count++;
+	};
+	
+	// 防抖
+	function antiShake(func, wait) {
+    	var timeout;
+    	return function () {
+        	clearTimeout(timeout)
+        	timeout = setTimeout(func, wait);
+    	}
+	}
+
+	home.onmousemove = antiShake(changeCount, 100);                                                                                                                                                                                                                                                          
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.common.dev.js"></script>
+  <title>TODO</title>
+</head>
+<body>
+  <div id="app">
+    <span>TODO列表</span>
+    <ul>
+      <!-- <li v-for="item in list">
+        <span :class="!item.status ? 'end' : 'start'">{{ item.title }}</span>
+        <button v-if="item.status" @click="changeStatus(item)">以完成</button>
+        <button v-if="!item.status" @click="changeStatus(item)">未完成</button>
+      </li> -->
+      <todo-item
+        v-for="(item, index) in list"
+        :key="index"
+        :title="item.title"
+        :status="item.status"
+        :item="item"
+        @changestatus="changeStatus"
+      ></todo-item>
+    </ul>
+  </div>
+
+  <script>
+    // 组件
+    Vue.component('todo-item', {
+      template: `
+        <li>
+          <span :class="!status ? 'end' : 'start'">{{ title }}</span>
+          <button v-if="status" @click="changeStatus(item)">以完成</button>
+          <button v-if="!status" @click="changeStatus(item)">未完成</button>
+        </li>
+      `,
+      props: {
+        title: String,
+        status: Boolean,
+        item: Object
+      },
+      methods: {
+        changeStatus(item) {
+          this.$emit('changestatus', item);
+        }
+      }
+    })
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        title: "Just a VUE",
+        list: [
+          { title: "第一", status: true },
+          { title: "第二", status: false },
+        ]
+      },
+      methods: {
+        changeStatus(item) {
+          const index = this.list.findIndex(x => x === item);
+          this.$set(this.list[index], 'status', !item.status);
+        }
+      }
+    })
+  </script>
+</body>
+<style>
+  li {
+    width: 200px;
+  }
+  .end {
+    text-decoration: line-through;
+  }
+</style>
+</html>
