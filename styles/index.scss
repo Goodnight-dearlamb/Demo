@@ -1,0 +1,98 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: "Helvetica",Helvetica,"PingFang","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  background-color: #F1F1F1;
+}
+
+// 宽高100%
+.full_screen {
+  width: 100%;
+  height: 100%;
+}
+
+// 宽100%
+.full_width {
+  width: 100%;
+}
+
+// 高100%
+.full_height {
+  height: 100%;
+}
+
+// flex占位
+.flex {
+  flex: 1
+}
+
+// 引用字体
+@font-face {
+  font-family: "Helvetica";
+  src: url(./font/Helvetica.otf);
+}
+
+@font-face {
+  font-family: "PingFang";
+  src: url(./font/PingFang.ttf);
+}
+
+// 主标题
+.main_title {
+  font-size: 20px;
+}
+
+// 标题
+.title {
+  font-size: 18px;
+}
+
+// 小标题
+.little_title {
+  font-size: 16px;
+}
+
+// 正文
+.text {
+  font-size: 14px;
+}
+
+// 正文 小
+.little_text {
+  font-size: 13px;
+}
+
+// 辅助文字
+.help_text {
+  font-size: 12px;
+}
+
+// 主要文字颜色 默认
+.main_text_color {
+  color: #303133;
+}
+
+// 常规文字
+.fixed_text_color {
+  color: #606266;
+}
+
+// 次要文字
+.minor_text_color {
+  color: #909399;
+}
+
+// 占位文字
+.holder_text_color {
+  color: #C0C4CC;
+} 

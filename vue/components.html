@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="app">
-    <span>TODO列表</span>
+    <span>TODO LIST</span>
     <ul>
       <!-- <li v-for="item in list">
         <span :class="!item.status ? 'end' : 'start'">{{ item.title }}</span>
@@ -21,7 +21,7 @@
         :title="item.title"
         :status="item.status"
         :item="item"
-        @changestatus="changeStatus"
+        @change-status="changeStatus"
       ></todo-item>
     </ul>
   </div>
@@ -43,7 +43,7 @@
       },
       methods: {
         changeStatus(item) {
-          this.$emit('changestatus', item);
+          this.$emit('change-status', item);
         }
       }
     })
