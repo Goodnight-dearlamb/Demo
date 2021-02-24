@@ -1,6 +1,6 @@
 "use strict";
 function greet(person) {
-    return "hello" + person;
+	return "hello" + person;
 }
 console.log(greet("管家璇"));
 // let str: string = "监听成功";
