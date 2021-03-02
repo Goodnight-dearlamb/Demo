@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.common.dev.js"></script>
+  <title>random color tools</title>
+</head>
+
+<body>
+  <div id="app" :style="color" @click="changeColor">
+    <span>
+      {{ hash }}
+    </span>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        color: {
+          background: "rgb(255, 255, 255)"
+        },
+        hash: "#FFFFFF"
+      },
+      methods: {
+        /**
+         * 随机返回0-255之间的数字
+         */
+        colorCode() {
+          const colorList = [];
+          for (let index = 0; index < 3; index++) {
+            const item = Math.round(Math.random() * 255);
+            colorList.push(item);
+          }
+          return colorList;
+        },
+        /**
+         * rgb转至16进制
+         */
+        colorRGBtoHex(color) {
+          const rgb = color.split(',');
+          const r = parseInt(rgb[0].split('(')[1]);
+          const g = parseInt(rgb[1]);
+          const b = parseInt(rgb[2].split(')')[0]);
+          const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+          return hex;
+        },
+        changeColor() {
+          const code = String(this.colorCode());
+          const color = `rgb(${code})`;
+          this.$set(this.color, "background", color);
+          this.hash = this.colorRGBtoHex(color);
+        }
+      }
+    })
+  </script>
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body,
+    #app {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+    }
+    span {
+      color: #FFFFFF;
+      margin: auto;
+      font-size: 50px;
+      font-weight: bold;
+      font-family: "dengxian";
+    }
+  </style>
+</body>
+
+</html>
