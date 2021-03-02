@@ -9,20 +9,29 @@
 </head>
 
 <body>
-  <div id="app" :style="color" @click="changeColor">
-    <span>
-      {{ hash }}
-    </span>
+  <div id="app">
+    <div class="color_content" v-for="(item, index) in color" :key="index" :style="{ background: item.background }"
+      @click="changeColor">
+      <span>
+        {{ item.hash }}
+      </span>
+    </div>
   </div>
 
   <script>
     var vm = new Vue({
       el: "#app",
       data: {
-        color: {
-          background: "rgb(255, 255, 255)"
-        },
-        hash: "#FFFFFF"
+        color: [],
+      },
+      watch: {
+        color() {
+          if (this.color.length > 6) {
+            alert("还没优化呢");
+            this.color.splice(6, 1);
+            return;
+          }
+        }
       },
       methods: {
         /**
@@ -51,8 +60,12 @@
         changeColor() {
           const code = String(this.colorCode());
           const color = `rgb(${code})`;
-          this.$set(this.color, "background", color);
-          this.hash = this.colorRGBtoHex(color);
+          const hash = this.colorRGBtoHex(color);
+          const data = {
+            background: color,
+            hash: hash
+          }
+          this.color.push(data);
         }
       },
       created() {
@@ -75,6 +88,12 @@
       width: 100%;
       cursor: pointer;
     }
+
+    .color_content {
+      flex: 1;
+      display: flex;
+    }
+
     span {
       color: #FFFFFF;
       margin: auto;
