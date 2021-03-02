@@ -53,6 +53,9 @@
           this.$set(this.color, "background", color);
           this.hash = this.colorRGBtoHex(color);
         }
+      },
+      created() {
+        this.changeColor();
       }
     })
   </script>
