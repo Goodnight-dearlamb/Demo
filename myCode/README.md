@@ -7,3 +7,4 @@
 
 ## 更新日志
 + 后补的,前面的省略了,现在开始写.
++ 新开[仓库](https://github.com/Goodnight-dearlamb/color.git)
